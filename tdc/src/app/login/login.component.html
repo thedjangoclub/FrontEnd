@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-5 col-md-offset-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Book the Flight</div>
+      <div class="panel-body">
+
+        <!-- Write the code for form here -->
+        <!-- should use the bootstrap classes form, form-group, form-control -->
+        <!-- use error-message class for displaying field leval error messages -->
+        
+        
+        <div *ngIf="errorMessage!=null">
+          <span class="text-danger">{{errorMessage}}</span>
+        </div>
+        <div *ngIf="bookingId!=null">
+          <span class="text-success">{{bookingId|successMessagePipe}}</span>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
