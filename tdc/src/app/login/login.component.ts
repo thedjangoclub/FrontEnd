@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { F , FormGroup  } from '@angular/forms';
+import { FormBuilder , FormGroup, Validators  } from '@angular/forms';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +9,25 @@ import { F , FormGroup  } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(  ) { }
+  emailId : string ;
+  password : string ;
+  loginForm : FormGroup;
+  successMessage : string ;
+  errorMessage : string ;
+  constructor( private fb : FormBuilder , private loginService : LoginService ) { }
 
   ngOnInit() {
+    this.loginForm = this.fb.group({
+      emailId : [null , Validators.compose([Validators.required , Validators.email])],
+      password : [null , Validators.required]
+    })
   }
+
+  login(){
+    this.loginService.login(this.loginForm.value)
+    .then(console.log("Done"))
+    .catch(console.log("Not Dome"));
+  }
+
 
 }
